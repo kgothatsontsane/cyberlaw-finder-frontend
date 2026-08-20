@@ -1,0 +1,37 @@
+{
+  "name": "cyberlaw-finder-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@tabler/icons-react": "^3.0.0",
+    "clsx": "^2.1.0",
+    "framer-motion": "^11.0.0",
+    "next": "^15.5.18",
+    "pptxgenjs": "^4.0.1",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-icons": "^5.6.0",
+    "sharp": "^0.34.5",
+    "tailwind-merge": "^2.2.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "autoprefixer": "^10.4.0",
+    "jest": "^30.4.2",
+    "jest-canvas-mock": "^2.5.2",
+    "jest-environment-jsdom": "^30.4.1",
+    "tailwindcss": "^3.4.0"
+  },
+  "overrides": {
+    "postcss": "8.5.15",
+    "test-exclude": "^7.0.0"
+  }
+}
