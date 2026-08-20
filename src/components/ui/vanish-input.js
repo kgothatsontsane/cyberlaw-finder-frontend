@@ -23,7 +23,7 @@ export function VanishInput({ onSubmit, className }) {
     setTimeout(() => {
       onSubmit(value);
       setIsAnimating(false);
-    }, 600);
+    }, 200);
   }, [value, onSubmit, isAnimating]);
 
   const handleKeyDown = (e) => {

@@ -4,16 +4,17 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export function SpotlightCard({ children, className, spotlightSize = 300 }) {
+  const glowRef = useRef(null);
   const cardRef = useRef(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseMove = (e) => {
-    const rect = cardRef.current.getBoundingClientRect();
-    setMousePosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
+    const glow = glowRef.current;
+    const card = cardRef.current;
+    if (!glow || !card) return;
+    const rect = card.getBoundingClientRect();
+    glow.style.left = `${e.clientX - rect.left - spotlightSize / 2}px`;
+    glow.style.top = `${e.clientY - rect.top - spotlightSize / 2}px`;
   };
 
   return (
@@ -32,12 +33,13 @@ export function SpotlightCard({ children, className, spotlightSize = 300 }) {
     >
       {isHovered && (
         <div
-          className="pointer-events-none absolute rounded-full"
+          ref={glowRef}
+          className="pointer-events-none absolute rounded-full will-change-[left,top]"
           style={{
             width: spotlightSize,
             height: spotlightSize,
-            left: mousePosition.x - spotlightSize / 2,
-            top: mousePosition.y - spotlightSize / 2,
+            left: -spotlightSize,
+            top: -spotlightSize,
             background: "radial-gradient(circle, rgba(6,182,212,0.15) 0%, transparent 70%)",
           }}
         />

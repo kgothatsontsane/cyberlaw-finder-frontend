@@ -35,7 +35,7 @@ function ScoreRing({ score }) {
           strokeDasharray={circumference}
           initial={{ strokeDashoffset: circumference }}
           animate={{ strokeDashoffset: offset }}
-          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+          transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
         />
       </svg>
       <span className="absolute inset-0 flex items-center justify-center text-[11px] font-bold font-mono"
@@ -56,7 +56,7 @@ export function ResultCard({ law, index }) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.08, duration: 0.5 }}
+      transition={{ delay: index * 0.04, duration: 0.35 }}
     >
       <SpotlightCard className="p-0 overflow-hidden">
         <div className={`p-6 ${isIrrelevant ? "opacity-60" : ""}`}>
@@ -73,7 +73,7 @@ export function ResultCard({ law, index }) {
                     className="flex items-center gap-1 text-[10px] font-mono text-cyber-teal bg-cyber-teal/10 px-2 py-0.5 rounded"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    transition={{ delay: 0.5 }}
+                    transition={{ delay: 0.3 }}
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-cyber-teal animate-pulse" />
                     Strong match

@@ -1,15 +1,15 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+const SCRAMBLE_LIMIT = 120;
 
 export function EncryptedText({ text, className, revealOnHover = true }) {
   const [displayText, setDisplayText] = useState(text);
   const [isRevealed, setIsRevealed] = useState(!revealOnHover);
   const intervalRef = useRef(null);
 
-  const scramble = () => {
+  const scramble = useCallback(() => {
     let iteration = 0;
     clearInterval(intervalRef.current);
 
@@ -27,28 +27,26 @@ export function EncryptedText({ text, className, revealOnHover = true }) {
       if (iteration >= text.length) clearInterval(intervalRef.current);
       iteration += 1 / 2;
     }, 30);
-  };
+  }, [text]);
+
+  const showPlain = text.length > SCRAMBLE_LIMIT;
 
   useEffect(() => {
-    if (isRevealed) {
+    if (isRevealed && !showPlain) {
       scramble();
     } else {
-      setDisplayText(text.split("").map(() => CHARS[Math.floor(Math.random() * CHARS.length)]).join(""));
+      setDisplayText(text);
     }
-  }, [isRevealed, text]);
-
-  if (!revealOnHover) {
-    useEffect(() => { scramble(); }, [text]);
-    return <span className={className}>{displayText}</span>;
-  }
+    return () => clearInterval(intervalRef.current);
+  }, [isRevealed, text, scramble, showPlain]);
 
   return (
-    <motion.span
+    <span
       className={className}
-      onMouseEnter={() => setIsRevealed(true)}
-      onMouseLeave={() => setIsRevealed(false)}
+      onMouseEnter={revealOnHover ? () => setIsRevealed(true) : undefined}
+      onMouseLeave={revealOnHover ? () => setIsRevealed(false) : undefined}
     >
       {displayText}
-    </motion.span>
+    </span>
   );
 }

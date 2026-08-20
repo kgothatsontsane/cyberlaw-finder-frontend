@@ -12,6 +12,19 @@ function ParticleField() {
     const ctx = canvas.getContext("2d");
     let animationId;
     let particles = [];
+    let running = true;
+
+    const handleVisibility = () => {
+      if (document.hidden && animationId) {
+        cancelAnimationFrame(animationId);
+        animationId = undefined;
+        running = false;
+      } else if (!document.hidden && !running) {
+        running = true;
+        animate();
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibility);
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -22,7 +35,7 @@ function ParticleField() {
 
     const createParticles = () => {
       particles = [];
-      for (let i = 0; i < 50; i++) {
+      for (let i = 0; i < 30; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
@@ -36,6 +49,7 @@ function ParticleField() {
     createParticles();
 
     const animate = () => {
+      if (!running) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach((p) => {
         p.x += p.speedX;
@@ -56,6 +70,7 @@ function ParticleField() {
     return () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", handleVisibility);
     };
   }, []);
 

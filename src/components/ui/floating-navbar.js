@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { IconShieldLock, IconHome, IconSun, IconMoon, IconHelp } from "@tabler/icons-react";
 import { useTheme } from "@/context/ThemeContext";
@@ -7,24 +7,24 @@ import { useTheme } from "@/context/ThemeContext";
 export function FloatingNavbar({ onReset, onHelp }) {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollY = useRef(0);
   const { resolved, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       setScrolled(currentScrollY > 50);
-      if (currentScrollY > lastScrollY && currentScrollY > 300) {
+      if (currentScrollY > lastScrollY.current && currentScrollY > 300) {
         setHidden(true);
       } else {
         setHidden(false);
       }
-      setLastScrollY(currentScrollY);
+      lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   return (
     <motion.nav

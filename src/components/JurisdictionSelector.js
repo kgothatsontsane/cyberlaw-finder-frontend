@@ -10,8 +10,8 @@ const container = {
 };
 
 const item = {
-  hidden: { opacity: 0, y: 30, filter: "blur(8px)" },
-  show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6 } },
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45 } },
 };
 
 export function JurisdictionSelector({ jurisdictions, onSelect, onBrowse }) {

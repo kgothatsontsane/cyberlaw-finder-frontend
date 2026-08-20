@@ -18,7 +18,7 @@ export function MultiStepLoader({ loadingStates }) {
 
   useEffect(() => {
     if (currentStep < steps.length - 1) {
-      const timer = setTimeout(() => setCurrentStep((s) => s + 1), 800);
+      const timer = setTimeout(() => setCurrentStep((s) => s + 1), 400);
       return () => clearTimeout(timer);
     }
   }, [currentStep, steps.length]);
@@ -33,10 +33,8 @@ export function MultiStepLoader({ loadingStates }) {
         >
           <IconLoader2 className="w-7 h-7 text-cyber-cyan" />
         </motion.div>
-        <motion.div
+        <div
           className="absolute -inset-3 rounded-3xl opacity-20"
-          animate={{ scale: [1, 1.1, 1], opacity: [0.1, 0.2, 0.1] }}
-          transition={{ duration: 2, repeat: Infinity }}
           style={{ background: "radial-gradient(circle, rgba(6,182,212,0.5) 0%, transparent 70%)" }}
         />
       </motion.div>

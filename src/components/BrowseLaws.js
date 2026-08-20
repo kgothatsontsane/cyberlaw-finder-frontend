@@ -132,7 +132,10 @@ export function BrowseLaws({ onBack }) {
   }, [jurisdiction, category, searchText]);
 
   useEffect(() => {
-    loadLaws();
+    const timer = setTimeout(() => {
+      loadLaws();
+    }, 350);
+    return () => clearTimeout(timer);
   }, [loadLaws]);
 
   const clearFilters = () => {

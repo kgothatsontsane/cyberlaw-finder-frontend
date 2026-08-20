@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 function BeamLine({ left, delay }) {
   return (
     <motion.div
-      className="absolute w-px h-full"
+      className="absolute w-px h-full will-change-transform"
       style={{ left }}
       initial={{ opacity: 0 }}
       animate={{ opacity: [0, 0.3, 0] }}
@@ -13,7 +13,7 @@ function BeamLine({ left, delay }) {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyber-cyan/40 to-transparent" />
       <motion.div
         className="absolute top-0 left-0 w-full h-1 bg-cyber-cyan/60 rounded-full blur-sm"
-        animate={{ top: ["-2%", "102%"] }}
+        animate={{ y: ["0vh", "110vh"] }}
         transition={{ duration: 4, delay, repeat: Infinity, ease: "linear" }}
       />
     </motion.div>
