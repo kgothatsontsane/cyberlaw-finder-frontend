@@ -2,136 +2,128 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Tokens (RGB triplets for Tailwind opacity modifiers) ──
-   Light = warm paper. Dark = ink. Serif display, no webfont downloads. */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ── Light Mode (default) — RGB triplets for Tailwind opacity modifiers ── */
 :root {
-  --cyber-bg: 250 249 246;        /* paper */
-  --cyber-bg-deep: 243 241 236;
+  --cyber-bg: 248 250 252;
+  --cyber-bg-deep: 241 245 249;
   --cyber-surface: 255 255 255;
-  --cyber-accent: 15 122 160;     /* deep cyan, AA on paper */
-  --cyber-accent-2: 14 118 108;
-  --cyber-warn: 176 108 16;
-  --cyber-danger: 186 42 42;
-  --cyber-purple: 108 61 180;
-  --cyber-border: 226 221 211;
-  --cyber-muted: 107 112 121;
-  --text-primary: 28 31 38;
-  --text-secondary: 78 84 94;
-  --text-muted: 107 112 121;
+  --cyber-accent: 2 132 199;
+  --cyber-accent-2: 13 148 136;
+  --cyber-warn: 217 119 6;
+  --cyber-danger: 220 38 38;
+  --cyber-purple: 124 58 237;
+  --cyber-border: 226 232 240;
+  --cyber-muted: 148 163 184;
+  --text-primary: 15 23 42;
+  --text-secondary: 71 85 105;
+  --text-muted: 100 116 139;
 }
 
+/* ── Dark Mode — RGB triplets ── */
 .dark {
-  --cyber-bg: 12 15 21;           /* ink */
-  --cyber-bg-deep: 8 11 16;
-  --cyber-surface: 18 22 30;
-  --cyber-accent: 86 184 212;
-  --cyber-accent-2: 76 194 176;
-  --cyber-warn: 228 162 64;
-  --cyber-danger: 235 92 92;
-  --cyber-purple: 158 124 232;
-  --cyber-border: 39 45 56;
-  --cyber-muted: 155 161 171;
-  --text-primary: 232 230 224;
-  --text-secondary: 178 182 190;
-  --text-muted: 140 146 156;
+  --cyber-bg: 10 14 23;
+  --cyber-bg-deep: 6 10 18;
+  --cyber-surface: 17 24 39;
+  --cyber-accent: 6 182 212;
+  --cyber-accent-2: 20 184 166;
+  --cyber-warn: 245 158 11;
+  --cyber-danger: 239 68 68;
+  --cyber-purple: 139 92 246;
+  --cyber-border: 31 41 55;
+  --cyber-muted: 156 163 175;
+  --text-primary: 241 245 249;
+  --text-secondary: 148 163 184;
+  --text-muted: 100 116 139;
 }
 
-/* ── Light mode: remap Tailwind gray scale to ink values ── */
+/* ── Light mode: remap Tailwind gray to readable dark colors ── */
 html:not(.dark) .text-gray-100,
 html:not(.dark) .text-gray-200,
 html:not(.dark) .text-gray-300,
 html:not(.dark) .hover\:text-gray-200:hover,
 html:not(.dark) .hover\:text-gray-300:hover,
 html:not(.dark) .group-hover\:text-gray-200,
-html:not(.dark) .group-hover\:text-gray-300 { color: #1c1f26 !important; }
+html:not(.dark) .group-hover\:text-gray-300 { color: #1e293b !important; }
 html:not(.dark) .text-gray-400,
-html:not(.dark) .hover\:text-gray-400:hover { color: #4e545e !important; }
+html:not(.dark) .hover\:text-gray-400:hover { color: #475569 !important; }
 html:not(.dark) .text-gray-500,
-html:not(.dark) .hover\:text-gray-500:hover { color: #6b7079 !important; }
-html:not(.dark) .text-gray-600 { color: #8a8f98 !important; }
+html:not(.dark) .hover\:text-gray-500:hover { color: #64748b !important; }
+html:not(.dark) .text-gray-600 { color: #94a3b8 !important; }
 html:not(.dark) .placeholder-gray-500::placeholder,
-html:not(.dark) .placeholder-gray-600::placeholder { color: #8a8f98 !important; }
+html:not(.dark) .placeholder-gray-600::placeholder { color: #94a3b8 !important; }
+
+/* ── Light mode: background fixes ── */
 html:not(.dark) .hover\:bg-cyber-navy\/50:hover,
 html:not(.dark) .hover\:bg-cyber-navy:hover,
-html:not(.dark) .hover\:bg-cyber-navy\/40:hover { background-color: rgb(243 241 236) !important; }
+html:not(.dark) .hover\:bg-cyber-navy\/40:hover { background-color: rgb(226 232 240 / 0.8) !important; }
 
 /* ── Base ── */
 * { box-sizing: border-box; padding: 0; margin: 0; }
+html { transition: background-color 0.3s ease, color 0.3s ease; }
 html, body {
   max-width: 100vw; overflow-x: hidden;
   background: rgb(var(--cyber-bg));
   color: rgb(var(--text-primary));
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 16px; line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-body { min-height: 100vh; min-height: 100dvh; }
+body { min-height: 100vh; }
 a { color: inherit; text-decoration: none; }
 
-h1, h2, h3, h4 {
-  font-family: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, "Times New Roman", serif;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-}
-
-/* ── Focus (visible, keyboard-first) ── */
-:focus-visible {
-  outline: 2px solid rgb(var(--cyber-accent));
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
 /* ── Selection ── */
-::selection { background: rgb(var(--cyber-accent) / 0.25); }
+::selection { background: rgb(var(--cyber-accent) / 0.35); color: #fff; }
+.dark ::selection { background: rgb(var(--cyber-accent) / 0.35); color: #fff; }
 
 /* ── Scrollbar ── */
-::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: rgb(var(--cyber-bg-deep)); }
-::-webkit-scrollbar-thumb { background: rgb(var(--cyber-border)); border-radius: 4px; }
+::-webkit-scrollbar-thumb { background: rgb(var(--cyber-border)); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgb(var(--cyber-accent)); }
 
-/* ── Law citation (the only justified mono) ── */
-.law-id {
-  font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
-  font-size: 0.6875rem;
-  letter-spacing: 0.02em;
+/* ── Scanline overlay ── */
+.scanline-overlay::before {
+  content: ''; position: absolute; inset: 0; z-index: 50; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 3px);
+}
+.dark .scanline-overlay::before {
+  background: repeating-linear-gradient(0deg, rgba(6,182,212,0.015) 0px, rgba(6,182,212,0.015) 1px, transparent 1px, transparent 3px);
 }
 
-/* ── Entrance: 160ms, compositor-only. No stagger cascades. ── */
-.rise { animation: rise 0.16s ease-out both; }
-@keyframes rise {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
+/* ── Glass morphism ── */
+.glass {
+  background: rgb(var(--cyber-surface));
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-width: 1px; border-style: solid; border-color: rgb(var(--cyber-border));
+}
+.glass-strong {
+  background: rgb(var(--cyber-surface));
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border-width: 1px; border-style: solid; border-color: rgb(var(--cyber-border));
 }
 
-/* Scroll-linked entrance — runs off the main thread (progressive
-   enhancement: element is visible by default when unsupported). */
-@supports (animation-timeline: view()) {
-  .rise-view {
-    animation: rise-view linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 60%;
-  }
-  @keyframes rise-view {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+/* ── Text glow (dark mode only) ── */
+.dark .text-glow-cyan { text-shadow: 0 0 20px rgba(6,182,212,0.4), 0 0 40px rgba(6,182,212,0.1); }
+.dark .text-glow-amber { text-shadow: 0 0 20px rgba(245,158,11,0.4), 0 0 40px rgba(245,158,11,0.1); }
+
+/* ── Grid background ── */
+.bg-grid {
+  background-image:
+    linear-gradient(rgb(var(--cyber-border)) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--cyber-border)) 1px, transparent 1px);
+  background-size: 60px 60px; background-position: center center; opacity: 0.5;
+}
+.bg-grid-sm {
+  background-image:
+    linear-gradient(rgb(var(--cyber-border)) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--cyber-border)) 1px, transparent 1px);
+  background-size: 20px 20px; background-position: center center; opacity: 0.3;
 }
 
-/* ── Native details: smooth-ish without JS or layout animation ── */
-details > summary { list-style: none; cursor: pointer; }
-details > summary::-webkit-details-marker { display: none; }
-details[open] > summary .chev { transform: rotate(90deg); }
-.chev { transition: transform 0.15s ease-out; }
-
-/* ── Logo cursor blink ── */
-@keyframes logo-cursor-blink {
-  0%, 55% { opacity: 1; }
-  56%, 100% { opacity: 0.15; }
-}
-.logo-cursor-blink { animation: logo-cursor-blink 1.2s steps(1) infinite; }
-
-@media (prefers-reduced-motion: reduce) {
-  .logo-cursor-blink, .rise { animation: none; }
-  * { scroll-behavior: auto !important; }
+/* ── Theme transition ── */
+*, *::before, *::after {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.15s ease;
 }

@@ -1,64 +1,113 @@
 "use client";
+import { motion } from "framer-motion";
 import { IconArrowRight, IconDatabase, IconBrain, IconWorld } from "@tabler/icons-react";
+import { BackgroundBeams } from "@/components/ui/background-beams";
 import { LogoMark } from "@/components/brand/Logo";
 
 const stats = [
-  { icon: IconDatabase, value: "96", label: "Statutes indexed" },
+  { icon: IconDatabase, value: "96", label: "Statutes Indexed" },
   { icon: IconWorld, value: "3", label: "Jurisdictions" },
-  { icon: IconBrain, value: "AI", label: "Semantic search" },
+  { icon: IconBrain, value: "AI", label: "Semantic Search" },
 ];
 
 export function LandingPage({ onEnter }) {
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-cyber-dark">
-      <div className="relative z-10 max-w-2xl mx-auto px-4 text-center rise">
-        <div className="mb-10">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-xl border border-cyber-gray bg-cyber-navy/60 mb-8">
-            <LogoMark className="w-12 h-12 text-cyber-accent" blink />
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-cyber-dark">
+      <BackgroundBeams />
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="absolute inset-0 bg-grid-sm"
+      />
+
+      <div className="relative z-10 max-w-2xl mx-auto px-4 text-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="mb-8"
+        >
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-cyber-cyan/10 border border-cyber-cyan/20 mb-6">
+            <LogoMark className="w-12 h-12 text-cyber-cyan" />
           </div>
+        </motion.div>
 
-          <h1 className="text-5xl md:text-6xl font-bold mb-5 tracking-tight">
-            <span className="text-cyber-accent">CyberLaw</span>{" "}
-            <span>Finder</span>
-          </h1>
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+          className="text-4xl md:text-6xl font-bold font-mono mb-4 tracking-tight"
+        >
+          <span className="text-cyber-cyan">CyberLaw</span>{" "}
+          <span className="text-gray-100">Finder</span>
+        </motion.h1>
 
-          <p className="text-lg md:text-xl text-text-secondary max-w-lg mx-auto leading-relaxed mb-3">
-            AI-powered cybercrime law search for digital forensic investigations.
-          </p>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+          className="text-gray-400 text-lg md:text-xl max-w-lg mx-auto leading-relaxed mb-4"
+        >
+          AI-powered cybercrime law search for digital forensic investigations.
+        </motion.p>
 
-          <p className="text-sm text-text-muted max-w-md mx-auto">
-            Describe an incident in plain language. The AI finds the laws that apply — even when the words don&apos;t match.
-          </p>
-        </div>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7, duration: 0.8 }}
+          className="text-gray-500 font-mono text-sm"
+        >
+          Describe an incident in plain language. The AI finds relevant laws — even when words don&apos;t match.
+        </motion.p>
 
-        <div className="flex items-center justify-center gap-10 my-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.8 }}
+          className="flex items-center justify-center gap-8 my-10"
+        >
           {stats.map((stat, i) => (
             <div key={i} className="flex flex-col items-center gap-1">
-              <stat.icon className="w-4 h-4 text-cyber-accent/70" />
-              <span className="text-2xl font-bold font-serif text-text-primary">{stat.value}</span>
-              <span className="text-[11px] text-text-muted uppercase tracking-wider">{stat.label}</span>
+              <stat.icon className="w-5 h-5 text-cyber-cyan/60" />
+              <span className="text-2xl font-bold font-mono text-gray-200">{stat.value}</span>
+              <span className="text-[10px] font-mono text-gray-500 uppercase tracking-wider">{stat.label}</span>
             </div>
           ))}
-        </div>
+        </motion.div>
 
-        <button
+        <motion.button
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.3, duration: 0.6 }}
           onClick={onEnter}
-          className="inline-flex items-center gap-3 px-8 py-4 rounded-lg bg-cyber-accent hover:bg-cyber-accent/90 text-white font-medium text-base transition-colors duration-150 group"
+          className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-cyber-cyan hover:bg-cyber-cyan/90 text-white font-mono font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyber-cyan/20 group"
         >
           Enter CyberLaw Finder
-          <IconArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform duration-150" />
-        </button>
+          <IconArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        </motion.button>
 
-        <p className="mt-8 text-xs text-text-muted">
-          Powered by sentence-transformers NLP &middot; South Africa, USA, Germany/EU
-        </p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.6 }}
+          className="mt-6 text-[11px] font-mono text-gray-600"
+        >
+          Powered by sentence-transformers NLP • South Africa, USA, Germany/EU
+        </motion.p>
       </div>
 
-      <div className="absolute bottom-8 left-0 right-0 text-center">
-        <span className="text-[11px] text-text-muted uppercase tracking-[0.15em]">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2 }}
+        className="absolute bottom-8 left-0 right-0 text-center"
+      >
+        <span className="text-[10px] font-mono text-gray-600 uppercase tracking-[0.2em]">
           Digital Forensics Module — COS783
         </span>
-      </div>
+      </motion.div>
     </div>
   );
 }

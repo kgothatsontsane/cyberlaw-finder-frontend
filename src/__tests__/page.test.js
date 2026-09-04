@@ -77,6 +77,19 @@ jest.mock('@/components/LandingPage', () => ({
     ),
 }));
 
+jest.mock('@/components/ui/hero-highlight', () => ({
+  HeroHighlight: ({ children }) => React.createElement('div', { 'data-testid': 'hero-highlight' }, children),
+  Highlight: ({ children }) => React.createElement('span', { 'data-testid': 'highlight' }, children),
+}));
+
+jest.mock('@/components/ui/background-beams', () => ({
+  BackgroundBeams: () => React.createElement('div', { 'data-testid': 'background-beams' }),
+}));
+
+jest.mock('@/components/ui/text-generate', () => ({
+  TextGenerateEffect: ({ words }) => React.createElement('div', { 'data-testid': 'text-generate' }, words),
+}));
+
 jest.mock('@/components/ui/vanish-input', () => ({
   VanishInput: ({ onSubmit }) => {
     const ref = React.useRef(null);
@@ -99,6 +112,14 @@ jest.mock('@/components/ui/vanish-input', () => ({
 
 jest.mock('@/components/ui/multi-step-loader', () => ({
   MultiStepLoader: () => React.createElement('div', { 'data-testid': 'multi-step-loader' }, 'Loading...'),
+}));
+
+jest.mock('@/components/ui/spotlight-card', () => ({
+  SpotlightCard: ({ children }) => React.createElement('div', { 'data-testid': 'spotlight-card' }, children),
+}));
+
+jest.mock('@/components/ui/encrypted-text', () => ({
+  EncryptedText: ({ text }) => React.createElement('span', null, text),
 }));
 
 jest.mock('@/components/JurisdictionSelector', () => ({
