@@ -15,13 +15,6 @@ export function LandingPage({ onEnter }) {
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-cyber-dark">
       <BackgroundBeams />
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        className="absolute inset-0 bg-grid-sm"
-      />
-
       <div className="relative z-10 max-w-2xl mx-auto px-4 text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}

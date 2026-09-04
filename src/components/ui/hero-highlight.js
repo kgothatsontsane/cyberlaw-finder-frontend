@@ -79,7 +79,7 @@ function ParticleField() {
 
 export function HeroHighlight({ children, className }) {
   return (
-    <div className={cn("relative min-h-screen flex items-center justify-center overflow-hidden scanline-overlay", className)}>
+    <div className={cn("relative min-h-screen flex items-center justify-center overflow-hidden", className)}>
       <ParticleField />
 
       <motion.div
@@ -88,8 +88,6 @@ export function HeroHighlight({ children, className }) {
         animate={{ opacity: 1 }}
         transition={{ duration: 2 }}
       />
-
-      <div className="absolute inset-0 bg-grid" />
 
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full blur-[120px] opacity-[0.06]"
         style={{ background: "radial-gradient(circle, rgba(6,182,212,0.4) 0%, transparent 70%)" }}

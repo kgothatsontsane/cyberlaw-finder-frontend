@@ -29,7 +29,6 @@ export function BackgroundBeams() {
         <BeamLine key={i} left={pos} delay={i * 0.6} />
       ))}
 
-      <div className="absolute inset-0 bg-grid-sm" />
     </div>
   );
 }
