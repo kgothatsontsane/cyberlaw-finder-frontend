@@ -85,19 +85,6 @@ jest.mock('@tabler/icons-react', () => ({
   IconMoon: (props) => React.createElement('span', { ...props, 'data-testid': 'icon-moon' }),
 }));
 
-jest.mock('@/components/ui/hero-highlight', () => ({
-  HeroHighlight: ({ children }) => React.createElement('div', { 'data-testid': 'hero-highlight' }, children),
-  Highlight: ({ children }) => React.createElement('span', { 'data-testid': 'highlight' }, children),
-}));
-
-jest.mock('@/components/ui/background-beams', () => ({
-  BackgroundBeams: () => React.createElement('div', { 'data-testid': 'background-beams' }),
-}));
-
-jest.mock('@/components/ui/text-generate', () => ({
-  TextGenerateEffect: ({ words }) => React.createElement('div', { 'data-testid': 'text-generate' }, words),
-}));
-
 jest.mock('@/components/ui/vanish-input', () => ({
   VanishInput: ({ onSubmit }) => {
     const [value, setValue] = React.useState('');
@@ -124,16 +111,6 @@ jest.mock('@/components/ui/multi-step-loader', () => ({
         React.createElement('div', { key: i, 'data-testid': `loader-step-${i}` }, step.text)
       )
     ),
-}));
-
-jest.mock('@/components/ui/spotlight-card', () => ({
-  SpotlightCard: ({ children, className }) =>
-    React.createElement('div', { className, 'data-testid': 'spotlight-card' }, children),
-}));
-
-jest.mock('@/components/ui/encrypted-text', () => ({
-  EncryptedText: ({ text, className }) =>
-    React.createElement('span', { className, 'data-testid': 'encrypted-text' }, text),
 }));
 
 import { JurisdictionSelector } from '@/components/JurisdictionSelector';
@@ -174,9 +151,9 @@ describe('JurisdictionSelector', () => {
     expect(screen.getByText('Primary')).toBeInTheDocument();
   });
 
-  it('renders the hero highlight wrapper', () => {
+  it('renders the primary badge', () => {
     render(React.createElement(JurisdictionSelector, { jurisdictions: JURISDICTIONS, onSelect: jest.fn(), onBrowse: jest.fn() }));
-    expect(screen.getByTestId('hero-highlight')).toBeInTheDocument();
+    expect(screen.getByText('Primary')).toBeInTheDocument();
   });
 
   it('renders the title text', () => {
@@ -319,7 +296,7 @@ describe('ResultsPanel', () => {
       jurisdiction,
       onNewSearch: jest.fn(),
     }));
-    const cards = screen.getAllByTestId('spotlight-card');
+    const cards = screen.getAllByTestId('result-card');
     expect(cards).toHaveLength(3);
   });
 
@@ -481,19 +458,19 @@ describe('ResultCard', () => {
   it('uses teal stroke color for high score (>0.7) via ScoreRing', () => {
     render(React.createElement(ResultCard, { law: SAMPLE_LAW, index: 0 }));
     const highScoreText = screen.getByText('89');
-    expect(highScoreText.style.color).toBe('rgb(20, 184, 166)');
+    expect(highScoreText.style.color).toBe('rgb(var(--cyber-accent-2))');
   });
 
   it('uses cyan stroke color for medium score (0.5-0.7) via ScoreRing', () => {
     render(React.createElement(ResultCard, { law: SAMPLE_LAW_MEDIUM_SCORE, index: 0 }));
     const medScoreText = screen.getByText('55');
-    expect(medScoreText.style.color).toBe('rgb(6, 182, 212)');
+    expect(medScoreText.style.color).toBe('rgb(var(--cyber-accent))');
   });
 
   it('uses amber stroke color for low score (<0.5) via ScoreRing', () => {
     render(React.createElement(ResultCard, { law: SAMPLE_LAW_LOW_SCORE, index: 0 }));
     const lowScoreText = screen.getByText('35');
-    expect(lowScoreText.style.color).toBe('rgb(245, 158, 11)');
+    expect(lowScoreText.style.color).toBe('rgb(var(--cyber-warn))');
   });
 });
 
@@ -667,7 +644,7 @@ describe('HowToGuide', () => {
 
   it('shows step dots for all 4 steps', () => {
     render(React.createElement(HowToGuide, { onClose: jest.fn() }));
-    const dots = document.querySelectorAll('.rounded-full.w-2.h-2');
+    const dots = document.querySelectorAll('[data-testid="step-dots"] > span');
     expect(dots).toHaveLength(4);
   });
 
