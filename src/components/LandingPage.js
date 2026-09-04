@@ -1,7 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
-import { IconShieldLock, IconArrowRight, IconDatabase, IconBrain, IconWorld } from "@tabler/icons-react";
+import { IconArrowRight, IconDatabase, IconBrain, IconWorld } from "@tabler/icons-react";
 import { BackgroundBeams } from "@/components/ui/background-beams";
+import { LogoMark } from "@/components/brand/Logo";
 
 const stats = [
   { icon: IconDatabase, value: "96", label: "Statutes Indexed" },
@@ -29,7 +30,7 @@ export function LandingPage({ onEnter }) {
           className="mb-8"
         >
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-cyber-cyan/10 border border-cyber-cyan/20 mb-6">
-            <IconShieldLock className="w-10 h-10 text-cyber-cyan" />
+            <LogoMark className="w-12 h-12 text-cyber-cyan" blink />
           </div>
         </motion.div>
 

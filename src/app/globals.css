@@ -109,6 +109,16 @@ a { color: inherit; text-decoration: none; }
 .dark .text-glow-cyan { text-shadow: 0 0 20px rgba(6,182,212,0.4), 0 0 40px rgba(6,182,212,0.1); }
 .dark .text-glow-amber { text-shadow: 0 0 20px rgba(245,158,11,0.4), 0 0 40px rgba(245,158,11,0.1); }
 
+/* ── Logo cursor blink (terminal prompt) ── */
+@keyframes logo-cursor-blink {
+  0%, 55% { opacity: 1; }
+  56%, 100% { opacity: 0.15; }
+}
+.logo-cursor-blink { animation: logo-cursor-blink 1.2s steps(1) infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .logo-cursor-blink { animation: none; }
+}
+
 /* ── Grid background ── */
 .bg-grid {
   background-image:

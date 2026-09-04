@@ -695,7 +695,7 @@ describe('FloatingNavbar', () => {
   it('calls onReset when logo is clicked', () => {
     const onReset = jest.fn();
     render(React.createElement(FloatingNavbar, { onReset }));
-    const logoButton = screen.getByTestId('icon-shield-lock').closest('button');
+    const logoButton = screen.getByTestId('logo-mark').closest('button');
     fireEvent.click(logoButton);
     expect(onReset).toHaveBeenCalled();
   });
@@ -708,8 +708,8 @@ describe('FloatingNavbar', () => {
     expect(onReset).toHaveBeenCalled();
   });
 
-  it('renders shield lock icon', () => {
+  it('renders logo mark', () => {
     render(React.createElement(FloatingNavbar, { onReset: jest.fn() }));
-    expect(screen.getByTestId('icon-shield-lock')).toBeInTheDocument();
+    expect(screen.getByTestId('logo-mark')).toBeInTheDocument();
   });
 });

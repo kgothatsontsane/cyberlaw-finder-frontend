@@ -1,8 +1,9 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { IconShieldLock, IconHome, IconSun, IconMoon, IconHelp } from "@tabler/icons-react";
+import { IconHome, IconSun, IconMoon, IconHelp } from "@tabler/icons-react";
 import { useTheme } from "@/context/ThemeContext";
+import { LogoMark } from "@/components/brand/Logo";
 
 export function FloatingNavbar({ onReset, onHelp }) {
   const [scrolled, setScrolled] = useState(false);
@@ -47,7 +48,7 @@ export function FloatingNavbar({ onReset, onHelp }) {
           }}>
           <button onClick={onReset} className="flex items-center gap-2.5 group">
             <div className="w-8 h-8 rounded-lg bg-cyber-accent/10 border border-cyber-accent/20 flex items-center justify-center group-hover:bg-cyber-accent/20 transition-all">
-              <IconShieldLock className="w-4 h-4 text-cyber-accent" />
+              <LogoMark className="w-5 h-5 text-cyber-accent" />
             </div>
             <div className="flex flex-col">
               <span className="font-mono font-bold text-sm text-primary leading-tight">
